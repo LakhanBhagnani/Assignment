@@ -5,7 +5,7 @@ import NavBar from "../component/NavBar";
 const Login = () => {
 	const [Username, setUsername] = useState();
 	const [password, setPassword] = useState();
-	const [usertype, setuserType] = useState();
+	const [usertype, setUserType] = useState();
 	const [isLoggedIn, setLogg] = useState(
 		localStorage.getItem("token") == null ? false : true
 	);
@@ -55,10 +55,6 @@ const Login = () => {
 		else return <Redirect to='/CompanyHome' />;
 	}
 
-	const onChangeValue = (event) => {
-		setuserType(event.target.value);
-	};
-
 	return (
 		<>
 			<NavBar />
@@ -88,24 +84,27 @@ const Login = () => {
 						/>
 					</div>
 
-					<div onChange={onChangeValue} required>
+					<div >
 						<input
 							className='form-check-input'
 							type='radio'
 							value='Company'
-							name='Company'
-							checked
+							id="company"
+							name='User'
+							onChange={(e)=>setUserType(e.target.value)}
 						/>
-						Company
+						<label for="company">Company</label>
 						<div></div>
 						<input
 							className='form-check-input'
 							type='radio'
 							value='Candidate'
-							name='Candidate'
-							selected
+							id="candidate"
+							name='User'
+							onChange={(e)=>setUserType(e.target.value)}
+							
 						/>
-						Candidate
+						<label for="candidate">Candidate</label>
 					</div>
 					<button className='mt-2 w-100 btn btn-lg btn-primary' type='submit'>
 						Login

@@ -90,7 +90,7 @@ const CompanyRegister = () => {
 			.then((response) => {
 				if (response) {
 					console.log(response);
-					setLogg(true);
+					setRedirect(true);
 				}
 			});
 	};

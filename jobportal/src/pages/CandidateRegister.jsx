@@ -19,14 +19,7 @@ const CandidateRegister = () => {
 	const [isLoggedin, setLogg] = useState(
 		localStorage.getItem("token") == null ? false : true
 	);
-	if (isLoggedin) {
-		 if (localStorage.getItem("type") == "Candidate")
-			return <Redirect to='/CandidateHome' />;
-		else return <Redirect to='/CompanyHome' />;
-	}
-	else if (redirect) {
-		return <Redirect to='/Login' />;
-	}
+	
 
 	const SubmitHandle = (e) => {
 		e.preventDefault();
@@ -52,6 +45,15 @@ const CandidateRegister = () => {
 				}
 			});
 	};
+	if (isLoggedin) {
+		if (localStorage.getItem("type") == "Company")
+		   return <Redirect to='/CompanyHome' />;
+	   else return <Redirect to='/CompanyHome' />;
+   }
+   else if (redirect) {
+	   debugger;
+	   return <Redirect to='/Login' />;
+}
 
 	const checkpassword=(pwd)=>{
 		if(pwd==Password)

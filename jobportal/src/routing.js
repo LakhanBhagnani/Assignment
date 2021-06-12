@@ -180,7 +180,7 @@ routing.post("/api/companyRegister", function (req, res) {
 				.input("CompanyLocation", sql.VarChar, details.CompanyLocation)
 				.input("Username", sql.VarChar, details.Username)
 				.input("UserPassword", sql.VarChar, details.UserPassword)
-				.execute("AddCompany");
+				.execute("SPAddCompany");
 		})
 		.then((result) => {
 			console.log("Company added");
