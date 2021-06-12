@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const routing = express();
 var config = {
-	server: "DESKTOP-V5FSTDD\\SQLEXPRESS",
+	server: "DESKTOP-L1IN3VS\\SQLEXPRESS",
 	user: "lakhan",
 	password: "lakhan",
 	options: {
@@ -153,7 +153,7 @@ routing.post("/api/registerCandidate/", function (req, res) {
 				.input("CurrentCity", sql.VarChar, String(details.CurrentCity))
 				.input("Skills", sql.VarChar, String(details.Skills))
 				.input("ExperienceInYears", sql.Int, parseInt(details.Experience))
-				.execute("AddCandidate");
+				.execute("SPAddCandidate");
 		})
 		.then((result) => {
 			console.log("result sent to client" + result);

@@ -26,7 +26,8 @@ const Login = () => {
 			},
 		};
 		axios.get(url, headers).then((response) => {
-			console.log("resonse is generated");
+			let ele=document.getElementById("errorSpan");
+			console.log("response is generated");
 			let result = response.data.recordset[0];
 			if (result !== undefined) {
 				const comparision =
@@ -39,10 +40,12 @@ const Login = () => {
 					localStorage.setItem("UserDetails", JSON.stringify(result));
 					setLogg(true);
 				} else {
-					alert("username and password doesn't match");
+					ele.innerHTML="username and password doesn't match";
+					ele.classList.add("myspans");
 				}
 			} else {
-				alert("no username found");
+				ele.innerHTML="No Username found";
+				ele.classList.add("myspans");
 			}
 		});
 	};
@@ -61,6 +64,7 @@ const Login = () => {
 			<NavBar />
 			<main className='form-signin'>
 				<form onSubmit={submitHandle}>
+				<span  id="errorSpan"></span>
 					<h1 className='h3 mb-3 fw-normal'>Please Login in</h1>
 
 					<div className='form-floating'>
@@ -68,26 +72,29 @@ const Login = () => {
 							type='text'
 							className='form-control'
 							id='floatingInput'
+							placeholder="Username"
 							onChange={(e) => setUsername(e.target.value)}
+							required
 						/>
-						<label for='floatingInput'>Username</label>
 					</div>
 					<div className='form-floating'>
 						<input
 							type='password'
 							className='form-control'
 							id='floatingPassword'
+							placeholder="Password"
 							onChange={(e) => setPassword(e.target.value)}
+							required
 						/>
-						<label for='floatingPassword'>Password</label>
 					</div>
 
-					<div onChange={onChangeValue}>
+					<div onChange={onChangeValue} required>
 						<input
 							className='form-check-input'
 							type='radio'
 							value='Company'
-							name='gender'
+							name='Company'
+							checked
 						/>
 						Company
 						<div></div>
@@ -95,11 +102,12 @@ const Login = () => {
 							className='form-check-input'
 							type='radio'
 							value='Candidate'
-							name='gender'
+							name='Candidate'
+							selected
 						/>
 						Candidate
 					</div>
-					<button className='w-100 btn btn-lg btn-primary' type='submit'>
+					<button className='mt-2 w-100 btn btn-lg btn-primary' type='submit'>
 						Login
 					</button>
 					<p className='mt-5 mb-3 text-muted'>&copy; 2021</p>

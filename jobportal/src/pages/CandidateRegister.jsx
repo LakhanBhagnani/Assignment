@@ -118,6 +118,7 @@ const CandidateRegister = () => {
 							id='floatingInput'
 							placeholder='Email-ID'
 							onChange={(e) => setEmail(e.target.value)}
+							required
 						/>
 
 					</div>
@@ -128,6 +129,7 @@ const CandidateRegister = () => {
 							id='floatingPassword'
 							placeholder='First Name'
 							onChange={(e) => setFname(e.target.value)}
+							required
 						/>
 
 					</div>
@@ -138,6 +140,7 @@ const CandidateRegister = () => {
 							id='floatingPassword'
 							placeholder='Last Name'
 							onChange={(e) => setLName(e.target.value)}
+							required
 						/>
 			
 					</div>
@@ -150,6 +153,7 @@ const CandidateRegister = () => {
 							placeholder='Date of Birth'
 							onFocus={(e)=>e.target.type='date'}
 							onChange={(e) => setDOB(e.target.value)}
+							required
 						/>
 		
 					</div>
@@ -160,6 +164,7 @@ const CandidateRegister = () => {
 							id='floatingPassword'
 							placeholder='Qualification'
 							onChange={(e) => setQualification(e.target.value)}
+							required
 						/>
 			
 					</div>
@@ -171,6 +176,7 @@ const CandidateRegister = () => {
 							placeholder='Passing Date'
 							onFocus={(e)=>e.target.type='date'}
 							onChange={(e) => setPassingDate(e.target.value)}
+							required
 						/>
 					
 					</div>
@@ -181,6 +187,7 @@ const CandidateRegister = () => {
 							id='floatingPassword'
 							placeholder='Current City'
 							onChange={(e) => setCurrentCity(e.target.value)}
+							required
 						/>
 				
 					</div>
@@ -191,6 +198,7 @@ const CandidateRegister = () => {
 							id='floatingPassword'
 							placeholder='Skills(comma separated)'
 							onChange={(e) => setSkills(e.target.value)}
+							required
 						/>
 				
 					</div>
@@ -202,6 +210,7 @@ const CandidateRegister = () => {
 							placeholder='Experience in Years'
 							min='0'
 							onChange={(e) => setExperience(e.target.value)}
+							required
 						/>
 					
 					</div>
