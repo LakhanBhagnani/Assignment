@@ -1,0 +1,26 @@
+Candidate HasAPplied Job
+Name-->CandidateID-->JID
+Lakhan-->1-->2
+Sharda-->3-->3
+
+Company Posting Job
+Company-->CompanyID-->JID
+MAQ-->1-->1,2
+CG-->2-->3,4,5
+
+Queries
+1. Query to retrive the name of companies Candidates have applied -- 			|	DONE
+2. Candidate must see all the jobs in his field 					|	DONE
+3.Retrive the names of candidates applied for the job posted by company			|	DONE
+4. create 		 jobs								|	DONE	
+5. Compnany can Change the application status --					|	Done
+6. Candidate can apply --- 								|	Done
+7.archive jobs										|	done
+
+// axios
+		// 	.get("http://localhost:3001/api/AllJobs")
+		// 	.then((response) => {
+		// 		console.log("respone is generated");
+		// 		console.log(response.data.recordset);
+		// 	})
+		// 	.then((error) => console.log(error));
