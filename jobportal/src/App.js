@@ -9,6 +9,7 @@ import CandidateHome from "./pages/CandidateHome";
 import CompanyHome from "./pages/CompanyHome";
 import AppliedJobs from "./pages/AppliedJobs";
 import Applicants from "./pages/Applicants";
+import AddJob from "./pages/AddJob";
 
 function App() {
 	return (
@@ -22,6 +23,7 @@ function App() {
 				<Route path='/companyHome' component={CompanyHome} />
 				<Route path='/jobsApplied' component={AppliedJobs} />
 				<Route path='/applicants' component={Applicants} />
+				<Route path='/addJob' component={AddJob} />
 			</BrowserRouter>
 		</div>
 	);

@@ -23,6 +23,9 @@ const NavBar = () => {
 				):(<></>)}
 				{localStorage.getItem("type") == "Company" ? (
 					<>
+						<Link className='navbar-brand  active' to='/addJob'>
+							Add New Job
+						</Link>
 						<Link className='navbar-brand  active' to='/applicants'>
 							Applicants
 						</Link>

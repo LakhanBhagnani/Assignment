@@ -74,7 +74,7 @@ const CandidateHome = () => {
 								<div className='order-2 p-2'>Job Posted on</div>
 								<div className='order-3 p-1'>
 									{new Date(job[1].PostingDate).getDate()}/
-									{new Date(job[1].PostingDate).getMonth()}/
+									{new Date(job[1].PostingDate).getMonth()+1}/
 									{new Date(job[1].PostingDate).getFullYear()}
 								</div>
 							</div>

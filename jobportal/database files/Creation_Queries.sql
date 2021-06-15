@@ -36,7 +36,8 @@ CREATE TABLE JOBTB(
 	SalaryMinimum BIGINT,
 	SalaryMaximum BIGINT,
 	RequiredExperience INT NOT NULL DEFAULT 0,
-	RequiredSkills VARCHAR(255)
+	RequiredSkills VARCHAR(255),
+	RequiredQualification Varchar(255)
 )
 CREATE TABLE HasApplied_R(
 		APPLICATION_ID BIGINT NOT NULL IDENTITY(10000,1) PRIMARY KEY,

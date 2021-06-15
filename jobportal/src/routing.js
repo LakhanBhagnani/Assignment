@@ -46,6 +46,36 @@ routing.get("/api/getCandidateDetails/:username", function (req, res) {
 			console.log(err.message);
 		});
 });
+
+routing.post("/api/addJob/", function (req, res) {
+	let details=req.body;
+	console.log(details);
+	sql
+		.connect(config)
+		.then((pool) => {
+			return pool
+				.request()
+				.input("C_ID", sql.Int, details.C_ID)
+				.input("JobRole",sql.VarChar,details.JobRole)
+				.input("Description",sql.VarChar,details.Description)
+				.input("Type",sql.VarChar,details.Type)
+				.input("Location",sql.VarChar,details.Location)
+				.input("MinimumSalary",sql.BigInt,details.MinimumSalary)
+				.input("MaximumSalary",sql.BigInt,details.MaximumSalary)
+				.input("RequiredQualification",sql.VarChar,details.RequiredQualification)
+				.input("RequiredSkills",sql.VarChar,details.RequiredSkills)
+				.input("RequiredExperience",sql.Int,details.RequiredExperience)
+				.input("PostingDate",sql.Date,details.PostingDate)
+				.execute("SPAddJob");
+		})
+		.then((result) => {
+			console.log("result sent to client");
+			res.status(200).json(result);
+		})
+		.catch((err) => {
+			console.log(err.message);
+		});
+});
 routing.get("/api/getCompanyDetails/:username", function (req, res) {
 	sql
 		.connect(config)

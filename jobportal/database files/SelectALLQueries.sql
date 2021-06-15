@@ -1,4 +1,4 @@
-  USE DB_JOB_PORTAL
+   USE DB_JOB_PORTAL
   SELECT * from CANDIDATETB
   select * from COMPANYTB
   SELECT * FROM JOBTB
@@ -19,4 +19,8 @@
  exec SPChangeJobsActiveStatus 3,2,0,NULL
 
  exec SPGetJobDetails
+ delete from JobPosting_R where JOB_ID_FK IS NULL
+
+
  */
+
