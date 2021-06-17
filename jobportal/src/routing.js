@@ -238,8 +238,8 @@ routing.post("/api/applyNow", function (req, res) {
 				.execute("SPJobApply");
 		})
 		.then((result) => {
-			console.log("Company added");
-			res.status(200).json("Company Added");
+			console.log(status);
+			res.status(200).json(status);
 		})
 		.catch((err) => {
 			console.log(err.message);
