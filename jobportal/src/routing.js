@@ -145,7 +145,7 @@ routing.get("/api/getJobCandidates/:username", function (req, res) {
 		.catch((err) => {
 			console.log(err.message);
 		});
-});
+});	
 routing.get("/api/getJobsPostedByCompany/:username", function (req, res) {
 	sql
 		.connect(config)
