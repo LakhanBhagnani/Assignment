@@ -105,3 +105,8 @@ div.HomePageBox {
 a > svg {
 	cursor: pointer;
 }
+#radiobuttons{
+	float: left;
+	padding-left:20px;
+
+}
