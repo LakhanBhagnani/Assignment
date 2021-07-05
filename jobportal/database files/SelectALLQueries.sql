@@ -7,7 +7,7 @@
   /*
   exec dbo.SPGetActiveJobsbyQualification 'Bcom'
 
-  exec SPJobPostedByCompany 'MAQK1234'
+  exec SPJobPostedByCompany 'MAQ1234'
   exec SPCandidatesForJob 'CGHARSHAD'
 
   exec SPCandidateAppliedJobs 'deepak1'
