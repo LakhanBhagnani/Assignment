@@ -28,7 +28,7 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-select j.JOB_ID,j.JobRole,J.JobType,j.JobLocation,jp.PostingDate,COUNT(h.job_id_fk) as candidates
+select j.JOB_ID,j.JobRole,J.JobType,j.JobLocation,jp.PostingDate,jp.IsActive,COUNT(h.job_id_fk) as candidates
 from  JOBTB as j
 inner join JobPosting_R as jp
 on jp.JOB_ID_FK=j.JOB_ID
@@ -36,7 +36,7 @@ inner join COMPANYTB as c
 on c.Username=@username
 left join HasApplied_R as h
 on j.JOB_ID=h.JOB_ID_FK
-group by j.JOB_ID,J.JobRole,J.JobType,j.JobLocation,jp.PostingDate
+group by j.JOB_ID,J.JobRole,J.JobType,j.JobLocation,jp.PostingDate,jp.IsActive
 
 END
 GO

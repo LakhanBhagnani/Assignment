@@ -32,10 +32,9 @@ const CompanyHome = () => {
   }, []);
   const jobremove = (j_id) => {
     let answer = window.confirm("You sure want to delete this job?");
-    if(answer){
+    if (answer) {
       console.log(j_id);
     }
-    
   };
   const displayJobs = Object.entries(jobs)
     .slice(pageVisited, pageVisited + Jobsperpage)
@@ -54,16 +53,33 @@ const CompanyHome = () => {
                 <h4>{job[1].JobLocation}</h4>
               </div>
               <div className='icon'>
-                <button
-                  type='button'
-                  className='closebtn btn btn-danger'
-                  data-toggle='tooltip'
-                  title='Delete job?'
-                  onClick={() => jobremove(job[1].JOB_ID)}
-                  aria-label='Close'
-                >
-                  <span aria-hidden='true'>&times;</span>
-                </button>
+                {job[1].IsActive ? (
+                  <>
+                    <button
+                      type='button'
+                      className='closebtn btn btn-danger'
+                      data-toggle='tooltip'
+                      title='Archive job?'
+                      onClick={() => jobremove(job[1].JOB_ID)}
+                      aria-label='Close'
+                    >
+                      <span aria-hidden='true'>&times;</span>
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      type='button'
+                      className='closebtn btn btn-success'
+                      data-toggle='tooltip'
+                      title='Unarchive job?'
+                      onClick={() => jobremove(job[1].JOB_ID)}
+                      aria-label='Close'
+                    >
+                      <span aria-hidden='true'>&#43;</span>
+                    </button>
+                  </>
+                )}
               </div>
             </div>
 
