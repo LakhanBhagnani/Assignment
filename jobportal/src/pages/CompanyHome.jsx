@@ -30,9 +30,12 @@ const CompanyHome = () => {
       return <Redirect to='/Login'></Redirect>;
     }
   }, []);
-  const jobremove = () => {
+  const jobremove = (j_id) => {
     let answer = window.confirm("You sure want to delete this job?");
-    console.log(answer);
+    if(answer){
+      console.log(j_id);
+    }
+    
   };
   const displayJobs = Object.entries(jobs)
     .slice(pageVisited, pageVisited + Jobsperpage)
@@ -53,8 +56,10 @@ const CompanyHome = () => {
               <div className='icon'>
                 <button
                   type='button'
-                  onClick={() => jobremove}
-                  className='close'
+                  className='closebtn btn btn-danger'
+                  data-toggle='tooltip'
+                  title='Delete job?'
+                  onClick={() => jobremove(job[1].JOB_ID)}
                   aria-label='Close'
                 >
                   <span aria-hidden='true'>&times;</span>

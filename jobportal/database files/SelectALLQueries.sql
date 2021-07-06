@@ -10,7 +10,7 @@
   exec SPJobPostedByCompany 'MAQ1234'
   exec SPCandidatesForJob 'CGHARSHAD'
 
-  exec SPCandidateAppliedJobs 'deepak1'
+  exec SPCandidateAppliedJobs 'lakhan'
 
  SPUpdateCandidatesJobStatus 'Reviewed',1,1
  
@@ -20,6 +20,7 @@
 
  exec SPGetJobDetails
  delete from JobPosting_R where JOB_ID_FK IS NULL
+
 
 
  */

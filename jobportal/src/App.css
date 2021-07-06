@@ -112,6 +112,15 @@ a > svg {
 }
 .icon {
   position: relative;
-  bottom: 16px;
-  right: -26px;
+  bottom: 6px;
+  right: -16px;
+}
+.closebtn {
+  height: 32px;
+  width: 32px;
+  padding: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1;
+  border: red solid;
 }
