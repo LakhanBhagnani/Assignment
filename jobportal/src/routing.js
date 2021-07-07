@@ -46,6 +46,40 @@ routing.get("/api/getCandidateDetails/:username", function (req, res) {
 			console.log(err.message);
 		});
 });
+routing.get("/api/archiveJob/:job_id", function (req, res) {
+	sql
+		.connect(config)
+		.then((pool) => {
+			return pool
+				.request()
+				.input("job_id", sql.VarChar, req.params.job_id)
+				.execute("SPArchiveJob")
+		})
+		.then((result) => {
+			console.log("Job archived");
+			res.status(200).json(result);
+		})
+		.catch((err) => {
+			console.log(err.message);
+		});
+});
+routing.get("/api/UnarchiveJob/:job_id", function (req, res) {
+	sql
+		.connect(config)
+		.then((pool) => {
+			return pool
+				.request()
+				.input("job_id", sql.VarChar, req.params.job_id)
+				.execute("SPUnArchiveJob")
+		})
+		.then((result) => {
+			console.log("Job Unarchived");
+			res.status(200).json(result);
+		})
+		.catch((err) => {
+			console.log(err.message);
+		});
+});
 
 routing.post("/api/addJob/", function (req, res) {
 	let details=req.body;

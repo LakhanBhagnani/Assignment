@@ -18,9 +18,9 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE OR ALTER PROCEDURE SPCandidateAppliedJobs
+CREATE PROCEDURE SPUnArchiveJob 
 	-- Add the parameters for the stored procedure here
-	@USERNAME VARCHAR(255)
+	@JOB_ID INT
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -28,15 +28,8 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-		SELECT COMPANYTB.CompanyName,JOBTB.JobRole,JOBTB.JobType,JobPosting_R.PostingDate,HasApplied_R.AppliedDate,HasApplied_R.JobStatus
-		FROM CANDIDATETB
-		INNER JOIN HASAPPLIED_R
-		ON HASAPPLIED_R.CANDIDATE_ID_FK = CANDIDATETB.CANDIDATE_ID AND CANDIDATETB.Username LIKE @USERNAME
-		INNER JOIN JOBTB
-		ON JOBTB.Job_ID=Hasapplied_r.JOB_ID_FK
-		INNER JOIN JobPosting_R
-		ON JobPosting_R.JOB_ID_FK=HasApplied_R.JOB_ID_FK 
-		INNER JOIN COMPANYTB
-		ON COMPANYTB.COMPANY_ID = JobPosting_R.COMPANY_ID_FK
+	UPDATE JobPosting_R
+	SET IsActive=1
+	WHERE JobPosting_R.JOB_ID_FK=@JOB_ID
 END
 GO

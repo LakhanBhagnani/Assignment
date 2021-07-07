@@ -13,29 +13,44 @@ const CompanyHome = () => {
   const pageVisited = pageNumber * Jobsperpage;
   const pageCount = Math.ceil(jobs.length / Jobsperpage);
 
+  const getJobs=()=>{
+     let url =
+       "http://localhost:3001/api/getJobsPostedByCompany/" +
+       localStorage.getItem("token");
+     fetch(url)
+       .then((response) => response.json())
+       .then((data) => {
+         setjobs(data.recordset);
+       });
+  }
   useEffect(() => {
     if (isLoggedin) {
       if (localStorage.getItem("type") == "Candidate")
         return <Redirect to='/CandidateHome' />;
-      let url =
-        "http://localhost:3001/api/getJobsPostedByCompany/" +
-        localStorage.getItem("token");
-      fetch(url)
-        .then((response) => response.json())
-        .then((data) => {
-          setjobs(data.recordset);
-        });
+     getJobs();
     }
     if (!isLoggedin) {
       return <Redirect to='/Login'></Redirect>;
     }
   }, []);
-  const jobremove = (j_id) => {
+  const ArchiveJob = (j_id) => {
     let answer = window.confirm("You sure want to delete this job?");
     if (answer) {
-      console.log(j_id);
+      let url= "http://localhost:3001/api/archiveJob/"+j_id;
+      fetch(url).then(
+            window.alert("Job is archived successfully")
+      ).then( getJobs())
     }
   };
+    const UnarchiveJob = (j_id) => {
+      let answer = window.confirm("You sure want to unarchive this job?");
+      if (answer) {
+        let url = "http://localhost:3001/api/UnarchiveJob/" + j_id;
+        fetch(url)
+          .then(window.alert("Job is Unarchived successfully"))
+          .then(getJobs());
+      }
+    };
   const displayJobs = Object.entries(jobs)
     .slice(pageVisited, pageVisited + Jobsperpage)
     .map((job, index) => {
@@ -60,7 +75,7 @@ const CompanyHome = () => {
                       className='closebtn btn btn-danger'
                       data-toggle='tooltip'
                       title='Archive job?'
-                      onClick={() => jobremove(job[1].JOB_ID)}
+                      onClick={() => ArchiveJob(job[1].JOB_ID)}
                       aria-label='Close'
                     >
                       <span aria-hidden='true'>&times;</span>
@@ -73,7 +88,7 @@ const CompanyHome = () => {
                       className='closebtn btn btn-success'
                       data-toggle='tooltip'
                       title='Unarchive job?'
-                      onClick={() => jobremove(job[1].JOB_ID)}
+                      onClick={() => UnarchiveJob(job[1].JOB_ID)}
                       aria-label='Close'
                     >
                       <span aria-hidden='true'>&#43;</span>
