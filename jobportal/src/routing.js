@@ -302,6 +302,26 @@ routing.post("/api/setCandidateStatus", function (req, res) {
 		});
 });
 
+routing.post("/api/isApplied/",function(req,res){
+	let jobId = req.body.j_id;
+	let UserId = req.body.userId;
+	sql
+		.connect(config)
+		.then((pool) => {
+			return pool
+				.request()
+				.input("JobID", sql.BigInt, jobId)
+				.input("UserID", sql.BigInt, UserId)
+				.execute("SPCheckUserHasApplied");
+		})
+		.then((result) => {
+			res.status(200).json(result);
+		})
+		.catch((err) => {
+			console.log(err.message);
+		});
+})
+
 routing.listen(3001, () => {
 	console.log("database is running");
 });
