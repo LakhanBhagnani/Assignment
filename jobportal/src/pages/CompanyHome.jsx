@@ -1,10 +1,9 @@
-import axios from "axios";
-import React, { Component, useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import NavBar from "../component/NavBar";
 const CompanyHome = () => {
   const [jobs, setjobs] = useState({});
-  const [isLoggedin, setLogg] = useState(
+  const [isLoggedin] = useState(
     localStorage.getItem("token") == null ? false : true
   );
 
@@ -25,14 +24,14 @@ const CompanyHome = () => {
   }
   useEffect(() => {
     if (isLoggedin) {
-      if (localStorage.getItem("type") == "Candidate")
+      if (localStorage.getItem("type") === "Candidate")
         return <Redirect to='/CandidateHome' />;
      getJobs();
     }
     if (!isLoggedin) {
       return <Redirect to='/Login'></Redirect>;
     }
-  }, []);
+  }, [isLoggedin]);
   const ArchiveJob = (j_id) => {
     let answer = window.confirm("You sure want to delete this job?");
     if (answer) {

@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import NavBar from "../component/NavBar";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {  Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 const Home = () => {
-	const [isLoggedin, setLogg] = useState(
+	const [isLoggedin] = useState(
 		localStorage.getItem("token") == null ? false : true
 	);
 	if (isLoggedin) {
-		if (localStorage.getItem("type") == "Candidate")
+		if (localStorage.getItem("type") === "Candidate")
 			return <Redirect to='/CandidateHome' />;
 		else return <Redirect to='/CompanyHome' />;
 	}

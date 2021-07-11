@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 import NavBar from "../component/NavBar";
@@ -13,7 +13,7 @@ const Login = () => {
 	const submitHandle = async (e) => {
 		e.preventDefault();
 		let apiurl = "";
-		if (usertype == "Company") {
+		if (usertype === "Company") {
 			apiurl = "getCompanyDetails/" + Username;
 		} else {
 			apiurl = "getCandidateDetails/" + Username;
@@ -51,7 +51,7 @@ const Login = () => {
 	};
 
 	if (isLoggedIn) {
-		if (usertype == "Candidate") return <Redirect to='/CandidateHome' />;
+		if (usertype === "Candidate") return <Redirect to='/CandidateHome' />;
 		else return <Redirect to='/CompanyHome' />;
 	}
 

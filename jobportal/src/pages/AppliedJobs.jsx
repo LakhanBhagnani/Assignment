@@ -6,10 +6,10 @@ import { Redirect } from "react-router-dom";
 import NavBar from "../component/NavBar";
 const AppliedJobs = () => {
 	const [jobs, setJobs] = useState({});
-	const [userdetails, setUserdetails] = useState(
+	const [userdetails] = useState(
 		JSON.parse(localStorage.getItem("UserDetails"))
 	);
-	const [isLoggedin, setLogg] = useState(
+	const [isLoggedin] = useState(
 		localStorage.getItem("token") == null ? false : true
 	);
 
@@ -57,7 +57,7 @@ const AppliedJobs = () => {
 		});
 
 	if (isLoggedin) {
-		if (localStorage.getItem("type") == "Company")
+		if (localStorage.getItem("type") === "Company")
 			return <Redirect to='/CompanyHome' />;
 	} else if (!isLoggedin) {
 		return <Redirect to='/Login'></Redirect>;
@@ -79,7 +79,7 @@ const AppliedJobs = () => {
 	const JobStatusFilter = (JobStatus) => {
 		let filtered = jobs.filter((e) => {
 			debugger;
-			return e.JobStatus == JobStatus;
+			return e.JobStatus === JobStatus;
 		});
 
 		setJobs(filtered);
@@ -117,6 +117,7 @@ const AppliedJobs = () => {
 							Applied Date &nbsp;
 							<a
 								onClick={() => sortbyDate("desc")}
+								href="#"
 								data-toggle='tooltip'
 								title='Most Recent Applied first'>
 								<svg

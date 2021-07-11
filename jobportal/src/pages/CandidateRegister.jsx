@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 import NavBar from "../component/NavBar";
@@ -8,7 +8,6 @@ const CandidateRegister = () => {
 	const [LName, setLName] = useState();
 	const [Username, setUsername] = useState();
 	const [Password, setPassword] = useState();
-	const [CPassword, setCPassword] = useState();
 	const [DOB, setDOB] = useState();
 	const [Qualification, setQualification] = useState();
 	const [PassingDate, setPassingDate] = useState();
@@ -16,7 +15,7 @@ const CandidateRegister = () => {
 	const [Skills, setSkills] = useState();
 	const [Experience, setExperience] = useState();
 	const [redirect, setRedirect] = useState(false);
-	const [isLoggedin, setLogg] = useState(
+	const [isLoggedin] = useState(
 		localStorage.getItem("token") == null ? false : true
 	);
 	
@@ -46,7 +45,7 @@ const CandidateRegister = () => {
 			});
 	};
 	if (isLoggedin) {
-		if (localStorage.getItem("type") == "Company")
+		if (localStorage.getItem("type") === "Company")
 		   return <Redirect to='/CompanyHome' />;
 	   else return <Redirect to='/CompanyHome' />;
    }
@@ -56,7 +55,7 @@ const CandidateRegister = () => {
 }
 
 	const checkpassword=(pwd)=>{
-		if(pwd==Password)
+		if(pwd===Password)
 			{setPassword(pwd)
 				document.getElementById('passwordSpan').innerHTML=""}
 		else
@@ -89,7 +88,7 @@ const CandidateRegister = () => {
 			ele.innerHTML="Password should contains Numbers"
 			isValid=false
 		}else
-		if(passwd.match(specialChars)==null){
+		if(passwd.match(specialChars)===null){
 			ele.innerHTML="Password should contains special like #,@,$"
 			isValid=false
 		}else

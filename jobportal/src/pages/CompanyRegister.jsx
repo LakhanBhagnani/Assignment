@@ -12,17 +12,17 @@ const CompanyRegister = () => {
 	const [Username, setUsername] = useState();
 	const [UserPassword, setUserPassword] = useState();
 	const [redirect, setRedirect] = useState(false);
-	const [isLoggedin, setLogg] = useState(
+	const [isLoggedin] = useState(
 		localStorage.getItem("token") == null ? false : true
 	);
 	if (isLoggedin) {
-		if (localStorage.getItem("type") == "Candidate")
+		if (localStorage.getItem("type") === "Candidate")
 			return <Redirect to='/CandidateHome' />;
 	} else if (redirect) {
 		return <Redirect to='/Login' />;
 	}
 	const checkpassword=(pwd)=>{
-		if(pwd==UserPassword)
+		if(pwd===UserPassword)
 			{setUserPassword(pwd)
 				document.getElementById('passwordSpan').innerHTML=""}
 		else

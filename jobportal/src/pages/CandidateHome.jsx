@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { Component, useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import NavBar from "../component/NavBar";
 import ReactPaginate from "react-paginate";
@@ -8,10 +8,10 @@ import Dropdown from "react-bootstrap/Dropdown";
 const CandidateHome = () => {
   const [jobs, setJobs] = useState({});
   const [hasApplied, setApplied] = useState(false);
-  const [userdetails, setUserdetails] = useState(
+  const [userdetails] = useState(
     JSON.parse(localStorage.getItem("UserDetails"))
   );
-  const [isLoggedin, setLogg] = useState(
+  const [isLoggedin] = useState(
     localStorage.getItem("token") == null ? false : true
   );
   const [pageNumber, setPagenumber] = useState(0);
@@ -38,19 +38,7 @@ const CandidateHome = () => {
     });
   };
 
-  const isApplied = (j_id) => {
-    let userId = userdetails.CANDIDATE_ID;
-    let obj = {
-      userId,
-      j_id,
-    };
-    axios.post("http://localhost:3001/api/isApplied/", obj).then((response) => {
-      if (response) {
-        if (response.data.returnValue) return true;
-        else return false;
-      }
-    });
-  };
+
   const displayJobs = Object.entries(jobs)
     .slice(pageVisited, pageVisited + Jobsperpage)
     .map((job) => {
@@ -129,13 +117,13 @@ const CandidateHome = () => {
   };
   useEffect(() => {
     loadData();
-  }, []);
+  }, [jobs]);
 
   if (hasApplied) {
     return <Redirect to='/jobsApplied' />;
   }
   if (isLoggedin) {
-    if (localStorage.getItem("type") == "Company")
+    if (localStorage.getItem("type") === "Company")
       return <Redirect to='/CompanyHome' />;
   } else if (!isLoggedin) {
     return <Redirect to='/Login'></Redirect>;
@@ -157,7 +145,7 @@ const CandidateHome = () => {
   });
   const QualificationFilter = (RequiredQualification) => {
     let filtered = jobs.filter((e) => {
-      return e.RequiredQualification == RequiredQualification;
+      return e.RequiredQualification === RequiredQualification;
     });
     setJobs(filtered);
   };
@@ -177,7 +165,7 @@ const CandidateHome = () => {
   });
   const JobLocationFilter = (JobLocation) => {
     let filtered = jobs.filter((e) => {
-      return e.JobLocation == JobLocation;
+      return e.JobLocation === JobLocation;
     });
     setJobs(filtered);
   };
@@ -198,7 +186,7 @@ const CandidateHome = () => {
   });
   const JobTypeFilter = (JobType) => {
     let filtered = jobs.filter((e) => {
-      return e.JobType == JobType;
+      return e.JobType === JobType;
     });
     setJobs(filtered);
   };
