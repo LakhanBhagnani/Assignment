@@ -93,25 +93,25 @@ const CandidateHome = () => {
                   {new Date(job[1].PostingDate).getFullYear()}
                 </div>
               </div>
-              {isApplied(job[1].JOB_ID) ? (
+              {job[1].APPLICATION_ID ? (
                 <>
                   <button
                     type='button'
-                    class='order-4 btn btn-success btn-sm float-right'
+                    class='btn btn-success float-right appbtn'
                   >
                     Applied{" "}
                   </button>
                 </>
               ) : (
                 <>
-                <button
-                  type='button'
-                  class='order-4 btn btn-info btn-sm float-right'
-                  data-dismiss='alert'
-                  onClick={() => ApplyNow(job[1].JOB_ID)}
-                >
-                  Apply Now
-                </button>
+                  <button
+                    type='button'
+                    class='btn btn-info float-right appbtn'
+                    data-dismiss='alert'
+                    onClick={() => ApplyNow(job[1].JOB_ID)}
+                  >
+                    Apply Now
+                  </button>
                 </>
               )}
             </div>
@@ -120,7 +120,8 @@ const CandidateHome = () => {
       );
     });
   const loadData = () => {
-    fetch("http://localhost:3001/api/Alljobs")
+    let userId = userdetails.CANDIDATE_ID;
+    fetch("http://localhost:3001/api/Alljobs/"+userId)
       .then((response) => response.json())
       .then((data) => {
         setJobs(data.recordset);

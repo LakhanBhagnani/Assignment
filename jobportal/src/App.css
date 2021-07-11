@@ -123,3 +123,7 @@ a > svg {
   font-weight: 700;
   line-height: 1;
 }
+.appbtn{
+  width: 84px;
+  height: 60px;
+}

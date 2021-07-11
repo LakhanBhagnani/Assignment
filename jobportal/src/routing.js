@@ -16,11 +16,15 @@ sql.on("error", (err) => {
 });
 routing.use(express.json());
 routing.use(cors());
-routing.get("/api/AllJobs", function (req, res) {
+routing.get("/api/AllJobs/:userId", function (req, res) {
+
 	sql
 		.connect(config)
 		.then((pool) => {
-			return pool.request().execute("SPGetJobDetails");
+			return pool
+			.request()
+			.input("CandidateID", sql.Int, req.params.userId)
+			.execute("SPGetJobDetails");
 		})
 		.then((result) => {
 			res.status(200).json(result);
