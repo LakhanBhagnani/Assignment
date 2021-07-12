@@ -18,38 +18,29 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE OR ALTER PROCEDURE SPGetJobDetails 
+CREATE  OR ALTER PROCEDURE SPCheckUserHasApplied
 	-- Add the parameters for the stored procedure here
-	@CandidateID int
-AS
-BEGIN
+	@JobID Bigint,
+	@UserID BigInt
+AS 
+DECLARE @hasApplied BIT
+BEGIN TRAN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	SELECT J.[JOB_ID]
-      ,J.[JobRole]
-      ,J.[JobDescription]
-      ,J.[JobType]
-	  ,C.[CompanyName]
-      ,J.[JobLocation]
-      ,J.[SalaryMinimum]
-      ,J.[SalaryMaximum]
-      ,J.[RequiredExperience]
-      ,J.[RequiredSkills]
-	  ,J.[RequiredQualification]
-	  ,JP.[PostingDate]
-	  ,H.APPLICATION_ID
-  FROM [JOBTB] AS J
-  INNER JOIN JobPosting_R AS JP 
-  ON JP.JOB_ID_FK =J.JOB_ID AND JP.IsActive=1
-  INNER JOIN COMPANYTB AS C
-  ON C.COMPANY_ID = JP.COMPANY_ID_FK
-  LEFT JOIN HasApplied_R AS H
-  ON J.JOB_ID=H.JOB_ID_FK AND H.CANDIDATE_ID_FK=@CandidateID
-  
+	DECLARE @applicationId BIGINT
+	
+SET @applicationId = (	SELECT H.APPLICATION_ID
+	FROM HasApplied_R as H
+	WHERE H.CANDIDATE_ID_FK=@UserID
+	AND H.JOB_ID_FK=@JobID)
+	
+	IF @applicationId IS NOT NULL
+          SET @hasApplied=1;  
+	ELSE  
+           SET @hasApplied=0; 
+COMMIT TRAN 
+RETURN  @hasApplied
 
-
-END
-GO

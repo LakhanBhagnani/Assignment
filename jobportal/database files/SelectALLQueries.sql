@@ -21,7 +21,10 @@
  exec SPGetJobDetails
  delete from JobPosting_R where JOB_ID_FK IS NULL
 
-
-
+ SPArchiveJob
+ SPArchiveJob 5
  */
+DECLARE  @return_status bit  
+EXEC @return_status=SPCheckUserHasApplied 2,1
+SELECT @return_status
 
