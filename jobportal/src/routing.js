@@ -1,36 +1,19 @@
-// const sql = require("mssql");
-// const express = require("express");
-// const cors = require("cors");
-// const routing = express();
-// var config = {
-// 	server: "DESKTOP-L1IN3VS\\SQLEXPRESS",
-// 	user: "lakhan",
-// 	password: "lakhan",
-// 	options: {
-// 		trustedConnection: true,
-// 		trustServerCertificate: true,
-// 	},
-// };
-// sql.on("error", (err) => {
-// 	console.log(err.message);
-// }); from 'mssql' import is commented out to avoid errors in the code snippet
-
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-require('dotenv').config();
-
+const sql = require("mssql");
+const express = require("express");
+const cors = require("cors");
 const routing = express();
-
-// Middleware
-routing.use(cors());
-routing.use(express.json());
-
-mongoose.connect("mongodb+srv://lakhanbhagnani:<db_password>@recruitment.9nuxser.mongodb.net/?retryWrites=true&w=majority&appName=Recruitment")
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => console.error(err));
-
-
+var config = {
+	server: "DESKTOP-L1IN3VS\\SQLEXPRESS",
+	user: "lakhan",
+	password: "lakhan",
+	options: {
+		trustedConnection: true,
+		trustServerCertificate: true,
+	},
+};
+sql.on("error", (err) => {
+	console.log(err.message);
+});
 routing.use(express.json());
 routing.use(cors());
 routing.get("/api/AllJobs/:userId", function (req, res) {
