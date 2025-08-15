@@ -43,10 +43,11 @@ const Login = () => {
 					ele.innerHTML="username and password doesn't match";
 					ele.classList.add("myspans");
 				}
-			} else {
-				ele.innerHTML="No Username found";
-				ele.classList.add("myspans");
 			}
+		}).catch((error) =>{
+			let ele=document.getElementById("errorSpan");
+			ele.innerHTML="No Username found";
+				ele.classList.add("myspans");
 		});
 	};
 
