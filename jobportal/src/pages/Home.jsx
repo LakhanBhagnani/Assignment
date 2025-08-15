@@ -16,22 +16,7 @@ const Home = () => {
 		<>
 			<NavBar />
 			<div>
-				<div class='HomePageBox'>
-					<h2>Are you a recuiter? </h2>
-					<h3>Looking for candidates?</h3>
-					<h3>Register below by clicking the button</h3>
-					<Link to='/companyregister' type='button' class='btn btn-primary'>
-						Company Register
-					</Link>
-				</div>
-				<div class='HomePageBox'>
-					<h2>Worried about future?</h2>
-					<h3>Looking for Job?</h3>
-					<h3>Register below by clicking the button</h3>
-					<Link to='/candidateregister' type='button' class='btn btn-primary'>
-						Candidate Register
-					</Link>
-				</div>
+					<h2> Something better</h2>
 			</div>
 		</>
 	);

@@ -35,21 +35,32 @@ const NavBar = () => {
 					<ul className='navbar-nav me-auto mb-3 mb-md-0'>
 						<li className='nav-item'>
 							{localStorage.getItem("token") == null ? (
-								 location.pathname !== "/login" ? (
+								if (condition) {
+									
+								} else {
+									
+								} location.pathname === "/login" ? (
 									<Link
-										to='/login'
-										className='nav-link active'
-										aria-current='page'>
-										LOGIN
-									</Link>
-									): (
-										
-										<Link
 										to='/'
 										className='nav-link active'
 										aria-current='page'>
-										SIGN UP
+										Register
 									</Link>
+									
+									): (
+									<>
+										<Link to='/SignUp' 
+										className='navbar-brand active' 
+										aria-current='page'>
+										Register
+									</Link>
+									<Link
+										to='/login'
+										className='navbar-brand active'
+										aria-current='page'>
+										Login
+									</Link>
+									</>
 									)
 							) : (
 								<>

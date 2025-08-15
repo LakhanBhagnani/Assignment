@@ -10,6 +10,7 @@ import CompanyHome from "./pages/CompanyHome";
 import AppliedJobs from "./pages/AppliedJobs";
 import Applicants from "./pages/Applicants";
 import AddJob from "./pages/AddJob";
+import SignUp from "./pages/SignUp";
 
 function App() {
 	return (
@@ -17,6 +18,7 @@ function App() {
 			<BrowserRouter>
 				<Route path='/' exact component={Home} />
 				<Route path='/login' component={Login} />
+				<Route path='/SignUp' component={SignUp} />
 				<Route path='/companyRegister' component={CompanyRegister} />
 				<Route path='/candidateRegister' component={CandidateRegister} />
 				<Route path='/candidateHome' component={CandidateHome} />

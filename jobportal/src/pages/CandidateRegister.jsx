@@ -42,6 +42,9 @@ const CandidateRegister = () => {
 					console.log(response);
 					setRedirect(true);
 				}
+			}).catch((error) => {
+				alert("Please try again later");
+				console.error("There was an error registering the candidate!", error);
 			});
 	};
 	if (isLoggedin) {
